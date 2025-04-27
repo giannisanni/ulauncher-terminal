@@ -16,16 +16,32 @@ class TerminalExtension(Extension):
 
     def execute_command(self, command):
         try:
-            # Open new terminal window
-            subprocess.Popen(['gnome-terminal', '--window'])
-            time.sleep(0.5)  # Wait for terminal to open
-
-            # Type command using xdotool
-            subprocess.run(['xdotool', 'type', command])
-            time.sleep(0.1)  # Small delay before Enter
-            subprocess.run(['xdotool', 'key', 'Return'])
+            # Try to find existing terminal window
+            result = subprocess.run(['xdotool', 'search', '--class', 'gnome-terminal'], capture_output=True, text=True)
+            window_ids = result.stdout.strip().split('\n')
             
-            return True
+            if not window_ids or window_ids == ['']:
+                # No terminal found, open new one
+                subprocess.Popen(['gnome-terminal', '--window'])
+                time.sleep(0.5)  # Wait for terminal to open
+                
+                # Get the new terminal window
+                result = subprocess.run(['xdotool', 'search', '--class', 'gnome-terminal'], capture_output=True, text=True)
+                window_ids = result.stdout.strip().split('\n')
+            
+            if window_ids and window_ids != ['']:
+                # Focus the last terminal window
+                window_id = window_ids[-1]
+                subprocess.run(['xdotool', 'windowactivate', window_id])
+                time.sleep(0.1)  # Wait for window focus
+                
+                # Type and execute command
+                subprocess.run(['xdotool', 'type', command])
+                time.sleep(0.1)  # Small delay before Enter
+                subprocess.run(['xdotool', 'key', 'Return'])
+                return True
+                
+            return False
         except Exception as e:
             print(f"Error executing command: {e}")
             return False

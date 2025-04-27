@@ -51,9 +51,12 @@ git clone https://github.com/giannisanni/ulauncher-terminal.git ~/.local/share/u
 3. Press Enter to execute
 
 The extension will:
-- Open a new terminal window
+- Use an existing terminal window if one is open
+- Open a new terminal window if none exists
 - Type and execute your command
 - Keep the terminal window open for output
+
+Note: The extension will reuse any existing terminal window instead of creating multiple windows.
 
 ## Examples
 - `t ls -la` - List files with details
