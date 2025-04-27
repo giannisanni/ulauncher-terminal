@@ -14,14 +14,33 @@ A Ulauncher extension that allows you to execute terminal commands directly from
 - gnome-terminal (or another terminal emulator)
 
 ## Installation
-1. Install required packages:
+
+### 1. Install Required Packages
+
+For Ubuntu/Debian:
 ```bash
-sudo apt install xdotool  # For Ubuntu/Debian
+sudo apt install xdotool gnome-terminal
+```
+
+For Fedora:
+```bash
+sudo dnf install xdotool gnome-terminal
+```
+
+For Arch Linux:
+```bash
+sudo pacman -S xdotool gnome-terminal
+```
+
+For macOS:
+```bash
+brew install xdotool
+# Note: You'll need to use iTerm2 or Terminal.app instead of gnome-terminal
 ```
 
 2. Clone the repository to the Ulauncher extensions folder:
 ```bash
-git clone https://github.com/giannisan/ulauncher-terminal.git ~/.local/share/ulauncher/extensions/com.github.giannisan.ulauncher-terminal
+git clone https://github.com/giannisanni/ulauncher-terminal.git ~/.local/share/ulauncher/extensions/com.github.giannisan.ulauncher-terminal
 ```
 
 3. Restart Ulauncher
