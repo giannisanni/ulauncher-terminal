@@ -1,0 +1,19 @@
+{
+    "required_api_version": "^2.0.0",
+    "name": "Terminal Command Executor",
+    "description": "Open terminal and execute typed commands",
+    "developer_name": "giannisan",
+    "icon": "images/icon.png",
+    "options": {
+        "query_debounce": 0.1
+    },
+    "preferences": [
+        {
+            "id": "terminal_keyword",
+            "type": "keyword",
+            "name": "Terminal",
+            "description": "Type command to execute in terminal",
+            "default_value": "t"
+        }
+    ]
+}
